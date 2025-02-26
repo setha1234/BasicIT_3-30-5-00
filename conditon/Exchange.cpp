@@ -87,6 +87,9 @@ int main(){
         exchange = dollar * peso;
         cout<<"Cost Peso after exchange : "<<exchange<<endl;
         goto again;
+    }else{
+        cout<<"Invalid option. Please try again."<<endl;
+        goto again;
     }
 
 
