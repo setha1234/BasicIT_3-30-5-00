@@ -82,21 +82,66 @@ int main(){
 */
 
 // example nest loop :
-/*
 
+/*
 #include<iostream>
 using namespace std;
 
 int main(){
-    for(int i = 0; i < 5; i++){
-        for(int j = 0; j < 5; j++){
-            cout << "i = " << i << " j = " << j << endl;
+    for(int i = 0; i < 5; i++){  // run 5 times
+        for (int j= 0 ; j < 5; j++){ // run 5 times
+            cout<<i<<"/i \t"<<j <<"/ j \t";
         }
+        cout<<endl;
     }
     return 0;
 }
-
 */
+/*
+#include<iostream>
+using namespace std;
+int main(){
+    int row,column;
+
+    cout<<"Enter the row :";
+    cin>>row;
+    cout<<"Enter the column :";
+    cin>>column;
+
+    for(int i = 1 ; i<=row;i++){
+        for(int j = 1 ; j<=column;j++){
+            cout<<"["<<i<<"]\t"<<"["<<j<<"]";
+        }
+        cout<<endl;
+    }
+
+
+
+    return 0;
+}
+*/
+
+
+#include<iostream>
+using namespace  std;
+int main()
+{
+    int start,end;
+    cout<<"Enter the number for start : ";
+    cin >>start;
+    cout<<"Enter the number for end : ";
+    cin >> end;
+
+    for (int i = start;i<= end;i++){
+        for(int j = 1 ; j<=10;j++){
+            cout<<i<<" * "<<j<<" = "<<i*j<<endl;
+        }
+        cout<<endl;
+        
+    }
+} 
+
+
 
 // calculate exercise with loop :
 /*
@@ -179,7 +224,7 @@ int main()
 
 */
 // exercise exchange amount dollar to ...
-
+/*
 #include<iostream>
 using namespace std;
 int main(){
@@ -290,3 +335,5 @@ int main(){
 
     return 0;
 }
+
+*/
