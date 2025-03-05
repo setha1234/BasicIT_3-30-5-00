@@ -18,6 +18,7 @@ using namespace std;
 int main(){
     system("cls");
     int menu,yt_content;
+    // start do-while loop
     do{
         cout<<"=====================[Choose an option]======================="<<endl;
         cout<<"1. YouTube"<<endl;
@@ -27,12 +28,12 @@ int main(){
         cout<<"5. Exit [0]"<<endl;
         cout<<"Choose an option: ";
         cin>>menu;
-
+        // start switch
         switch(menu){
             case 0 : {
                 cout<<"=====================[Exiting the program]======================="<<endl;
                 break;
-            }
+            }// end case 0
             case 1 :{
                 do{
                     cout<<"===========================[YouTube]=============================="<<endl;
@@ -46,38 +47,38 @@ int main(){
                         case 0 : {
                             cout<<"===========================[Back to main menu]=============================="<<endl;
                             break;
-                        }
+                        }// end case 0
                         case 1 : {
                             system("start https://www.youtube.com/watch?v=cvaIgq5j2Q8&list=RDcvaIgq5j2Q8&start_radio=1");
                             break;
-                        }
+                        }// end case 1
                         case 2 :{
                             system("start https://www.youtube.com/watch?v=WEJcUm6fkC8");
                             break;
-                        }
+                        }// end case 2
                         case 3 : {
                             system("start https://www.youtube.com/watch?v=1kRtTAEhJD0");
                             break;
-                        }
+                        }// end case 3
                         default : {
                             cout<<"===========================[Invalid option]=============================="<<endl;
-                        }
-                    }
-                }while(yt_content != 0);
+                        } // end default
+                    }// end switch
+                }while(yt_content != 0);// end loop content yt
                 break;
-            }
+            }// end case 1
 
 
 
 
-        }
+        }// end switch 
 
 
-    }while(menu != 0);
+    }while(menu != 0);// end loop menu
 
 
 
 
 
     return 0;
-}
+}// end int main
