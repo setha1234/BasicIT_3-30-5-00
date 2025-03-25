@@ -2,6 +2,7 @@
 using namespace std;
 int main(){
 	// input
+	int size_of_a,search,a[20];
 	cout<<"\n======== Input =============\n";
 	cout<<"Enter size fo array : ";cin>>size_of_a;
 	for(int i = 0;i<size_of_a;i++){
