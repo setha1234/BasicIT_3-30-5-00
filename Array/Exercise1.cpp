@@ -23,7 +23,8 @@ Variable :
 #include<iostream>
 #include<iomanip>
 
-
+#define CYAN   "\033[36m"
+#define PURPLE   "\033[35m"
 #define BLUE   "\033[34m"
 #define GREEN  "\033[32m"
 #define RESET  "\033[0m"
@@ -33,9 +34,10 @@ using namespace std;
 int 	Code[100],Quantity[10],Size_Coffee;
 string 	Name[100];
 float 	Price[100];
+bool    check; // bool - Boolean : Check Condition TRUE OR FALASE
 
 void CreateCoffee(){
-	cout<<"\t\t\t====================================================="<<endl;
+	cout<<CYAN <<"\t\t\t====================================================="<<endl;
 	cout<<"\t\t\t                    Create Coffee                    "<<endl;
 	cout<<"\t\t\t====================================================="<<endl;	
 	cout<<"\t\t\t => Enter size for stock coffee : ";cin>>Size_Coffee;	
@@ -130,11 +132,183 @@ void Update(){
 	}	
 }
 
+void Delete(){
+	int Delete_Code;
+	cout<<"Enter code for delete coffee : ";cin>>Delete_Code;
+	for(int i=0;i<Size_Coffee;i++){ // Check find Code
+		if(Delete_Code==Code[i]){ // Conditon for delete
+			for(int j=i;j<Size_Coffee-1;j++){
+				Code[j]     = Code[j+1];
+				Name[j]     = Name[j+1];
+				Price[j]    = Price[j+1];
+				Quantity[j] = Quantity[j+1];
+			}
+			Size_Coffee--; 
+			
+		}	
+	}	
+}
+
+void Add(){
+	int add_size;
+	cout<<"Enter size to add coffee : ";cin>>add_size;//4
+	for(int i=Size_Coffee;i<Size_Coffee+add_size;i++){ // 3+4 = 7
+		cout<<"\t\t\t====================================================="<<endl;
+		cout<<"Enter Coffee Code     : ";cin>>Code[i];
+		cout<<"Enter Coffee Name     : ";cin>>Name[i];
+		cout<<"Enter Coffee Price    : ";cin>>Price[i];
+		cout<<"Enter Coffee Quantity : ";cin>>Quantity[i];
+	}
+	Size_Coffee+=add_size; // Size Coffee = Size Coffee + Add Size
+}
+
+void Sort(){
+	int options,answer;
+	check = false; // Check False
+	cout<<"1. Sort By Name.[A-Z] / [Z-A]"<<endl;
+	cout<<"2. Sort By Id.[0-100]/[100-0]"<<endl;
+	cout<<"3. Sort By Price.[1-$$$$][$$$$-1]"<<endl;
+	cout<<"Please choose option : ";cin>>options;
+	switch(options){
+		case 1 : {
+			cout<<"Choose for sort."<<endl;
+			cout<<"1. [A-Z]"<<endl;
+			cout<<"2. [Z-A]"<<endl;
+			cout<<"Please inter number choosing : ";cin>>answer;
+			if(answer==1){
+				for(int i=0;i<Size_Coffee;i++){ // check data // 1 = S
+					for(int j=i+1;j<Size_Coffee;j++){ // create a new data start i + 1  // 2 = A
+						if(Name[i]>Name[j]){
+							swap(Code[i],Code[j]);
+							swap(Name[i],Name[j]);
+							swap(Price[i],Price[j]);
+							swap(Quantity[i],Quantity[j]);
+							check = true;
+						}
+					}
+				}
+				if(!check){
+					cout<<"Sort Not Complate!"<<endl;
+				}else{
+					cout<<"Sort Complate!!"<<endl;
+				}	
+			}
+			if(answer==2){
+				for(int i=0;i<Size_Coffee;i++){ // check data // 1 = S
+					for(int j=i+1;j<Size_Coffee;j++){ // create a new data start i + 1  // 2 = A
+						if(Name[i]<Name[j]){
+							swap(Code[i],Code[j]);
+							swap(Name[i],Name[j]);
+							swap(Price[i],Price[j]);
+							swap(Quantity[i],Quantity[j]);
+							check = true;
+						}
+					}
+				}
+				if(!check){
+					cout<<"Sort Not Complate!"<<endl;
+				}else{
+					cout<<"Sort Complate!!"<<endl;
+				}	
+			}
+			break;
+		}
+		case 2 :{
+			cout<<"Choose for sort."<<endl;
+            cout<<"1. [0-100]"<<endl;
+            cout<<"2. [100-0]"<<endl;
+            cout<<"Please inter number choosing : ";cin>>answer;
+            if(answer==1){
+				for(int i=0;i<Size_Coffee;i++){ // check data // 1 = S
+					for(int j=i+1;j<Size_Coffee;j++){ // create a new data start i + 1  // 2 = A
+                        if(Code[i]>Code[j]){
+                            swap(Code[i],Code[j]);
+                            swap(Name[i],Name[j]);
+                            swap(Price[i],Price[j]);
+                            swap(Quantity[i],Quantity[j]);
+                            check = true;
+                        }
+                    }
+                }
+				if(!check){
+					cout<<"Sort Not Complate!"<<endl;
+                }else{
+					cout<<"Sort Complate!!"<<endl;
+                }
+			}
+			if(answer==2){
+				for(int i=0;i<Size_Coffee;i++){ // check data // 1 = S
+                    for(int j=i+1;j<Size_Coffee;j++){ // create a new data start i + 1  // 2 = A
+                        if(Code[i]<Code[j]){
+                            swap(Code[i],Code[j]);
+                            swap(Name[i],Name[j]);
+                            swap(Price[i],Price[j]);
+                            swap(Quantity[i],Quantity[j]);
+                            check = true;
+                        }
+                    }
+                }
+                if(!check){
+                    cout<<"Sort Not Complate!"<<endl;
+                } else{
+                    cout<<"Sort Complate!!"<<endl;
+                }
+			}	
+			break;
+		}
+		case 3 :{
+			cout<<"Choose for sort."<<endl;
+            cout<<"1. [1-$$$$]"<<endl;
+            cout<<"2. [$$$$-1]"<<endl;
+            cout<<"Please inter number choosing : ";cin>>answer;
+            if(answer==1){
+				for(int i=0;i<Size_Coffee;i++){ // check data // 1 = S
+					for(int j=i+1;j<Size_Coffee;j++){ // create a new data start i + 1  // 2 = A
+                        if(Price[i]>Price[j]){
+                            swap(Code[i],Code[j]);
+                            swap(Name[i],Name[j]);
+                            swap(Price[i],Price[j]);
+                            swap(Quantity[i],Quantity[j]);
+                            check = true;
+                        }
+                    }
+                }
+                if(!check){
+					cout<<"Sort Not Complate!"<<endl;
+                } else{
+                    cout<<"Sort Complate!!"<<endl;
+                }
+            }
+			if(answer==2){
+				for(int i=0;i<Size_Coffee;i++){ // check data // 1 = S
+                    for(int j=i+1;j<Size_Coffee;j++){ // create a new data start i + 1  // 2 = A
+                        if(Price[i]<Price[j]){
+                            swap(Code[i],Code[j]);
+                            swap(Name[i],Name[j]);
+                            swap(Price[i],Price[j]);
+                            swap(Quantity[i],Quantity[j]);
+                            check = true;
+                        }
+                    }
+                }
+                if(!check){
+                    cout<<"Sort Not Complate!"<<endl;
+                } else{
+                    cout<<"Sort Complate!!"<<endl;
+                }
+            }    
+			break;
+		}
+	}
+	
+	
+}
+
 int main(){
 	int option;
 	do{
 		system("cls");
-		cout<< BLUE <<"\t\t\t====================================================="<<endl;
+		cout<< PURPLE <<"\t\t\t====================================================="<<endl;
 		cout<<"\t\t\t                    Menu Option                      "<<endl;
 		cout<<"\t\t\t====================================================="<<endl;
 		cout<<"\t\t\t[  1. Create Coffee to Stock."<<endl;
@@ -152,7 +326,7 @@ int main(){
 				cout<<"\t\t\t====================================================="<<endl;
 				cout<<"\t\t\t                      Exit Program                   "<<endl;
 				cout<<"\t\t\t====================================================="<<endl;
-				system("pause");
+				
 				break;
 			}
 			case 1 :{
@@ -170,6 +344,25 @@ int main(){
 				system("pause");
 				break;
 			}
+			case 4 : {
+				Update();
+				system("pause");
+				break;
+			}
+			case 5 :{
+				Delete();
+				system("pause");
+				break;
+			}
+			case 6 :{
+				Add();
+				break;
+			}
+			case 7 : {
+				Sort();
+				break;
+			}
+				
 		}
 		
 	}while(option!=0);
