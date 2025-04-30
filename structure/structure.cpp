@@ -29,8 +29,9 @@ using namespace std;
 struct Library{
     // Data members
     string  book_name[100],author_name[100],book_type[100],book_public[100],book_viral[100],search_by_name;
-    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id;
+    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book;
     float   book_price[100];
+    bool    check;
 };
 
 void AddBook(Library &lib){
@@ -135,6 +136,28 @@ void Search_Book(Library &lib){
     }while(choose!=0);
 }
 
+void Update_Book(Library &lib){
+    lib.check=false;
+    cout<<"Enter Book ID to update : ";cin>>lib.update_book;
+    for(lib.i=0;lib.i<lib.size_book;lib.i++){
+        if(lib.update_book==lib.book_id[lib.i]){
+            cout<<"Book ID : "<<lib.book_id[lib.i]<<endl;
+            cout<<"Enter new book name : ";cin.ignore();getline(cin,lib.book_name[lib.i]);
+            cout<<"Enter new author name : ";getline(cin,lib.author_name[lib.i]);
+            cout<<"Enter new book type : ";getline(cin,lib.book_type[lib.i]);   
+            cout<<"Enter new book publisher : ";getline(cin,lib.book_public[lib.i]);
+            cout<<"Enter new book viral : ";getline(cin,lib.book_viral[lib.i]);
+            cout<<"Enter new book price : ";cin>>lib.book_price[lib.i];
+            cout<<"Enter new book quantity : ";cin>>lib.book_qty[lib.i];
+            cout<<"Enter new book issued : ";cin>>lib.book_issued[lib.i];
+            lib.check=true;
+            cout<<"Book updated successfully!\n";
+        }
+    }
+    if(!lib.check){
+        cout<<"Book unfind!\n";
+    }
+}
 
 int main(){
     Library books;
@@ -168,6 +191,10 @@ int main(){
             }
             case 3 : {
                 Search_Book(books);
+                break;
+            }
+            case 4 : {
+                Update_Book(books);
                 break;
             }
         }
