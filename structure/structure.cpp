@@ -29,7 +29,7 @@ using namespace std;
 struct Library{
     // Data members
     string  book_name[100],author_name[100],book_type[100],book_public[100],book_viral[100],search_by_name,q_book;
-    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book,qty_issued,answer_borrow;
+    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book,qty_issued,answer_borrow = 0;
     float   book_price[100];
     bool    check;
 };
@@ -165,13 +165,33 @@ void Issued_Book(Library &lib){
             cout<<"How many for borrow the book";cin>>lib.answer_borrow;
             if(lib.answer_borrow>0 && lib.answer_borrow<=lib.book_qty[lib.i]){
                 cout<<"Issued Successfully!"<<endl;
-                lib.book_issued[lib.i] = lib.answer_borrow;
+                lib.book_issued[lib.i] += lib.answer_borrow;
             }else{
                 cout<<"Invalid Borrow!!!"<<endl;
             }
             
         }
     }
+}
+
+void Return_Book(Library &lib){
+    string r_book;
+    int r_b;
+    lib.check = false;
+    cout<<"Enter name book : ";cin>>r_book;
+    for(lib.i=0;lib.i<lib.size_book;lib.i++){
+        if(r_book == lib.book_name[lib.i]){
+            cout<<"Input Return book : ";cin>>r_b;
+            lib.book_issued[lib.i]-=r_b;// b=b-r_b;
+            cout<<"Return is Successfully!!"<<endl;
+            lib.check = true;
+        }
+    }
+
+    if(!lib.check){
+        cout<<"Not Complate For Return!!"<<endl;
+    }
+
 }
 
 int main(){
@@ -214,6 +234,11 @@ int main(){
             }
             case 6 :{
                Issued_Book(books);
+               break;
+            }
+            case 7 : {
+                Return_Book(books);
+                break;
             }
         }
 
