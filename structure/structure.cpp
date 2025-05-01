@@ -28,8 +28,8 @@
 using namespace std;   
 struct Library{
     // Data members
-    string  book_name[100],author_name[100],book_type[100],book_public[100],book_viral[100],search_by_name;
-    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book;
+    string  book_name[100],author_name[100],book_type[100],book_public[100],book_viral[100],search_by_name,q_book;
+    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book,qty_issued,answer_borrow;
     float   book_price[100];
     bool    check;
 };
@@ -50,7 +50,6 @@ void AddBook(Library &lib){
         cout<<"Enter book viral : ";getline(cin,lib.book_viral[lib.i]);
         cout<<"Enter book price : ";cin>>lib.book_price[lib.i];
         cout<<"Enter book quantity : ";cin>>lib.book_qty[lib.i];
-        cout<<"Enter book issued : ";cin>>lib.book_issued[lib.i];
         lib.i++;// step loop
         cout<<"Book added successfully!\n";
     }
@@ -108,7 +107,6 @@ void Search_Book(Library &lib){
                         cout<<"Book Viral: "<<lib.book_viral[lib.i]<<endl;
                         cout<<"Book Price: "<<lib.book_price[lib.i]<<endl;
                         cout<<"Book Quantity: "<<lib.book_qty[lib.i]<<endl;
-                        cout<<"Book Issued: "<<lib.book_issued[lib.i]<<endl;
                     }
                 }
                 break;
@@ -149,13 +147,30 @@ void Update_Book(Library &lib){
             cout<<"Enter new book viral : ";getline(cin,lib.book_viral[lib.i]);
             cout<<"Enter new book price : ";cin>>lib.book_price[lib.i];
             cout<<"Enter new book quantity : ";cin>>lib.book_qty[lib.i];
-            cout<<"Enter new book issued : ";cin>>lib.book_issued[lib.i];
             lib.check=true;
             cout<<"Book updated successfully!\n";
         }
     }
     if(!lib.check){
         cout<<"Book unfind!\n";
+    }
+}
+
+void Issued_Book(Library &lib){
+    cout<<"What you want ot borrow?"<<endl;
+    cout<<"Enter Title of Book for borrow : ";
+    cin>>lib.q_book;
+    for(lib.i=0;lib.i<lib.size_book;lib.i++){
+        if(lib.q_book == lib.book_name[lib.i]){
+            cout<<"How many for borrow the book";cin>>lib.answer_borrow;
+            if(lib.answer_borrow>0 && lib.answer_borrow<=lib.book_qty[lib.i]){
+                cout<<"Issued Successfully!"<<endl;
+                lib.book_issued[lib.i] = lib.answer_borrow;
+            }else{
+                cout<<"Invalid Borrow!!!"<<endl;
+            }
+            
+        }
     }
 }
 
@@ -196,6 +211,9 @@ int main(){
             case 4 : {
                 Update_Book(books);
                 break;
+            }
+            case 6 :{
+               Issued_Book(books);
             }
         }
 
