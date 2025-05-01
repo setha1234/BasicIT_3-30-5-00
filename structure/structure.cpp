@@ -29,7 +29,7 @@ using namespace std;
 struct Library{
     // Data members
     string  book_name[100],author_name[100],book_type[100],book_public[100],book_viral[100],search_by_name,q_book;
-    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book,qty_issued,answer_borrow = 0;
+    int     book_id[100],book_qty[100],book_issued[100],size_book,i,search_by_id,update_book,qty_issued,answer_borrow = 0,delete_book,j;
     float   book_price[100];
     bool    check;
 };
@@ -155,6 +155,25 @@ void Update_Book(Library &lib){
         cout<<"Book unfind!\n";
     }
 }
+void Delate_Book(Library &lib){
+    cout<<"Enter ID To Delate Book:";cin>>lib.delete_book;
+    for(lib.i=0;lib.i<lib.size_book;lib.i++){
+        if(lib.book_id[lib.i]==lib.delete_book){
+            for(lib.j=lib.i;lib.j<lib.size_book-1;lib.j++){
+                lib.book_id[lib.j]=lib.book_id[lib.j+1];
+                lib.book_name[lib.j]=lib.book_name[lib.j+1];
+                lib.author_name[lib.j]=lib.author_name[lib.j+1];
+                lib.book_type[lib.j]=lib.book_type[lib.j+1];
+                lib.book_public[lib.j]=lib.book_public[lib.j+1];
+                lib.book_viral[lib.j]=lib.book_viral[lib.j+1];
+                lib.book_price[lib.j]=lib.book_price[lib.j+1];
+                lib.book_qty[lib.j]=lib.book_qty[lib.j+1];
+                lib.book_issued[lib.j]=lib.book_issued[lib.j+1];
+            }
+        }
+        lib.size_book--;
+    }
+}
 
 void Issued_Book(Library &lib){
     cout<<"What you want ot borrow?"<<endl;
@@ -230,6 +249,10 @@ int main(){
             }
             case 4 : {
                 Update_Book(books);
+                break;
+            }
+            case 5 : {
+                Delate_Book(books);
                 break;
             }
             case 6 :{
