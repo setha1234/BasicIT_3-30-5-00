@@ -184,7 +184,7 @@ class BonusEmployee : public Employee, public Performance{
     public :
         void Display(){
             SetEmployeeInfo();
-            SetRated();
+          
             bonus = base_salary * CalRated();
             total = base_salary + bonus;
             ShowInfo();
